@@ -2,6 +2,11 @@ package ch.bebforst.bebaweb;
 
 import javax.servlet.annotation.WebServlet;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import ch.bebforst.bebaweb.service.HelloService;
+import ch.bebforst.bebaweb.util.SpringContextHelper;
+
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
@@ -14,27 +19,35 @@ import com.vaadin.ui.VerticalLayout;
 
 @Theme("mytheme")
 @SuppressWarnings("serial")
-public class MyVaadinUI extends UI
-{
+public class MyVaadinUI extends UI {
 
-    @WebServlet(value = "/*", asyncSupported = true)
-    @VaadinServletConfiguration(productionMode = false, ui = MyVaadinUI.class, widgetset = "bebaweb.bebaforst.ch.AppWidgetSet")
-    public static class Servlet extends VaadinServlet {
-    }
+	@WebServlet(value = "/*", asyncSupported = true)
+	@VaadinServletConfiguration(productionMode = false, ui = MyVaadinUI.class, widgetset = "bebaweb.bebaforst.ch.AppWidgetSet")
+	public static class Servlet extends VaadinServlet {
+	}
 
-    @Override
-    protected void init(VaadinRequest request) {
-        final VerticalLayout layout = new VerticalLayout();
-        layout.setMargin(true);
-        setContent(layout);
-        
-        Button button = new Button("Click Me");
-        button.addClickListener(new Button.ClickListener() {
-            public void buttonClick(ClickEvent event) {
-                layout.addComponent(new Label("Thank you for clicking"));
-            }
-        });
-        layout.addComponent(button);
-    }
+	@Autowired
+	private HelloService service;
+
+	@Override
+	protected void init(VaadinRequest request) {
+
+		SpringContextHelper helper = new SpringContextHelper(VaadinServlet.getCurrent().getServletContext());
+
+		service = helper.getBean(HelloService.class);
+
+		final VerticalLayout layout = new VerticalLayout();
+		layout.setMargin(true);
+		setContent(layout);
+
+		Button button = new Button(service.getString());
+		button.addClickListener(new Button.ClickListener() {
+			@Override
+			public void buttonClick(ClickEvent event) {
+				layout.addComponent(new Label("Thank you for clicking"));
+			}
+		});
+		layout.addComponent(button);
+	}
 
 }
