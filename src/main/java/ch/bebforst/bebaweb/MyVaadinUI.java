@@ -2,8 +2,8 @@ package ch.bebforst.bebaweb;
 
 import javax.servlet.annotation.WebServlet;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
+import ch.bebforst.bebaweb.model.Dummy;
+import ch.bebforst.bebaweb.repository.DummyRepository;
 import ch.bebforst.bebaweb.service.HelloService;
 import ch.bebforst.bebaweb.util.SpringContextHelper;
 
@@ -26,7 +26,6 @@ public class MyVaadinUI extends UI {
 	public static class Servlet extends VaadinServlet {
 	}
 
-	@Autowired
 	private HelloService service;
 
 	@Override
@@ -35,6 +34,7 @@ public class MyVaadinUI extends UI {
 		SpringContextHelper helper = new SpringContextHelper(VaadinServlet.getCurrent().getServletContext());
 
 		service = helper.getBean(HelloService.class);
+		final DummyRepository dummyRepository = helper.getBean(DummyRepository.class);
 
 		final VerticalLayout layout = new VerticalLayout();
 		layout.setMargin(true);
@@ -45,6 +45,7 @@ public class MyVaadinUI extends UI {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				layout.addComponent(new Label("Thank you for clicking"));
+				dummyRepository.save(new Dummy());
 			}
 		});
 		layout.addComponent(button);
