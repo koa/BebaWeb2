@@ -1,4 +1,4 @@
-package ch.bebforst.bebaweb.util;
+package ch.bebaforst.bebaweb.util;
 
 import javax.servlet.annotation.WebListener;
 

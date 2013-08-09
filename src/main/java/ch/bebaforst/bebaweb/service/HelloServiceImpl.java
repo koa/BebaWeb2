@@ -1,4 +1,4 @@
-package ch.bebforst.bebaweb.service;
+package ch.bebaforst.bebaweb.service;
 
 
 public class HelloServiceImpl implements HelloService {

@@ -1,4 +1,4 @@
-package ch.bebforst.bebaweb.model;
+package ch.bebaforst.bebaweb.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

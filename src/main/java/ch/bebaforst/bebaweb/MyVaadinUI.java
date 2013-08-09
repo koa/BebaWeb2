@@ -1,11 +1,11 @@
-package ch.bebforst.bebaweb;
+package ch.bebaforst.bebaweb;
 
 import javax.servlet.annotation.WebServlet;
 
-import ch.bebforst.bebaweb.model.Dummy;
-import ch.bebforst.bebaweb.repository.DummyRepository;
-import ch.bebforst.bebaweb.service.HelloService;
-import ch.bebforst.bebaweb.util.SpringContextHelper;
+import ch.bebaforst.bebaweb.model.Dummy;
+import ch.bebaforst.bebaweb.repository.DummyRepository;
+import ch.bebaforst.bebaweb.service.HelloService;
+import ch.bebaforst.bebaweb.util.SpringContextHelper;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
