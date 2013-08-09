@@ -7,7 +7,7 @@
 
 
 
-  <bean class="ch.bebforst.bebaweb.service.HelloServiceImpl" />
+  <bean class="ch.bebaforst.bebaweb.service.HelloServiceImpl" />
 
   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
     <property name="driverClassName" value="org.hsqldb.jdbc.JDBCDriver" />
@@ -29,7 +29,7 @@
     <property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
   </bean>
 
-  <jpa:repositories base-package="ch.bebforst.bebaweb.repository" />
+  <jpa:repositories base-package="ch.bebaforst.bebaweb.repository" />
 
   <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
     <property name="entityManagerFactory" ref="entityManagerFactory" />
